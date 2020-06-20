@@ -14,7 +14,7 @@ struct Jugador {
 				char NombreJug[20];
 				char ApellidoJug[20];
 				
-				bool  ActivoJug;
+				bool  ActivoJug=NULL;
 				
 				int MontoJug = 0 ;
 				
@@ -33,6 +33,8 @@ struct Jugador Play7;
 struct Jugador Play8;
 struct Jugador Play9;
 struct Jugador Play10;
+
+char peop[5];
 
 
 
@@ -169,6 +171,31 @@ Jugador RegistrarJugador(){
 	
 }
 
+
+
+void EliminarJugador(char *qJug){
+		char com[5];
+	
+	   printf("VA A ELIMINAR A  : %s",qJug);
+		
+	   scanf("%s",&com);
+	   
+	   if(com == qJug){
+	   		
+	   		printf("Mi vencinita **********");
+	   	
+	   }
+	
+	   	
+	   Play2.ActivoJug = NULL;
+	   		  
+	
+	  
+
+	
+	
+	
+}
 
 
 
@@ -502,8 +529,10 @@ void Menu(){
 			
 			case 'e':
 			case 'E':
-					printf("Usted selec E ");
-					
+					printf("\nUsted seleciono la opcion e \n");
+					printf("\nEscriba el nombre de quien quiera eliminar: \n");
+					scanf("%s",&peop);
+					EliminarJugador(peop);
 					
 					Menu();
 					
