@@ -23,16 +23,8 @@ struct Jugador {
 };
 
 
-struct Jugador Play1;
-struct Jugador Play2;
-struct Jugador Play3;
-struct Jugador Play4;
-struct Jugador Play5;
-struct Jugador Play6;
-struct Jugador Play7;
-struct Jugador Play8;
-struct Jugador Play9;
-struct Jugador Play10;
+struct Jugador Players[10];
+
 
 
 
