@@ -17,6 +17,8 @@ struct Jugador {
 				char NombreJug[20];
 				char ApellidoJug[20];
 				
+				int cantPartidas = 0 ;
+				
 				bool  ActivoJug = false;
 				
 				int MontoJug = 0 ;
@@ -27,6 +29,71 @@ struct Jugador {
 
 
 struct Jugador Players[10];
+
+
+
+bool eliminarJugador(){
+	
+	char AliasModi[5];
+	char Caux;
+	int p = 0;
+	bool check = false ;
+	
+	printf("\nIngrese el alias que quiere modificar :");
+	scanf("%i",Caux);
+	
+	while(Caux !='\n'){
+		
+		AliasModi[p] = Caux;
+		p++;
+		Caux = getchar();
+		
+	}
+	
+	
+	for(int t = 1 ; t<cantJugadores;t++){
+		
+		for(int x;x<=5;x++){
+				
+				if(Players[t].AliasJug[x]==AliasModi[x]){
+					
+					check = true ;
+
+				
+				}else{
+					
+					
+					check = false ;
+					break;
+					
+				}
+				 	
+				
+		}
+		
+		if(check  == true){
+		
+			Players[t].ActivoJug == false  ;
+		
+			
+			printf("El jugador se elimino correctamente  \n");
+		
+		}else {
+			
+			printf("No se encontro ningun jugador con ese alias");
+			
+		}
+	
+		
+		
+		
+	
+	}
+	
+
+}
+
+
 
 
 
@@ -63,13 +130,14 @@ void Mostrar(char *nombre){
 }
 
 
-bool ModificarJugador(){
+bool MostrarDatos(){
+	
 	char AliasModi[5];
 	char Caux;
 	int p = 0;
 	bool check = false ;
 	
-	printf("\nIngrese el alias que quiere modificar :");
+	printf("\nIngrese el alias que quiere mostrar sus datos :");
 	scanf("%i",Caux);
 	
 	while(Caux !='\n'){
@@ -132,6 +200,40 @@ bool ModificarJugador(){
 	
 }
 
+int pedirEdad (int num){
+	 		
+	 	int edadAux = num ;
+
+		while(edadAux < 18){
+	 		
+	 		printf("\nIngrese una edad correcto \n");
+	 		
+	 		scanf("%i",&edadAux);
+	 	
+		 }
+	 		
+		return edadAux ; 		
+	 			
+	 		
+}
+
+int pedirMonto (int num){
+	 		
+	 	int montoAux = num ;
+
+
+		while(montoAux > 1000 || montoAux < 0){
+	 		
+	 		printf("\nIngrese un Monto  correcto \n");
+	 		
+	 		scanf("%i",&montoAux);
+	 	
+		 }
+	 		
+		return montoAux ; 		
+	 			
+	 		
+}
 
 
 
@@ -140,6 +242,7 @@ void registrarJugador(){
 		int x = 0;
 		int z = 0;
 		int q = 0;
+		int edadAux , MontoAux ;
 		char AliAux,NomAux,apeAux;
 		char peo[20];
 		
@@ -189,11 +292,35 @@ void registrarJugador(){
 		 }
 		
 		printf("\nIngrese la edad del jugador :");
-		scanf("%i",&Players[cantJugadores].EdadJug);
 		
+		scanf("%i",&edadAux);
+		if(edadAux  >= 18 ){
+			
+				Players[cantJugadores].EdadJug  = edadAux ;
+	
+		}else{
 		
-		printf("\nIngrese el monto que quiere :");
-		scanf("%i",&Players[cantJugadores].MontoJug);
+			
+		 		Players[cantJugadores].EdadJug = pedirEdad(edadAux);
+			
+		}
+	
+		
+		printf("\nIngrese el MONTO  que quiere :");
+		
+		scanf("%i",&MontoAux);
+		if(MontoAux < 1000 ){
+				
+				Players[cantJugadores].MontoJug = MontoAux ;
+	
+		}else{
+		
+			
+		 		Players[cantJugadores].MontoJug = pedirMonto(MontoAux);
+			
+		}
+	
+	
 		
 		cantJugadores++;
 	
@@ -276,7 +403,7 @@ void Menu(){
 			
 			case 'j':
 			case 'J':
-					printf("Ustede selecciono la opcion J perra ");
+					
 					
 					
 					Menu();
@@ -287,9 +414,9 @@ void Menu(){
 				
 			case 'd':
 			case 'D':
+				
 					bool Verifica;
-					printf("Ustede selecciono la opcion D perra ");
-					Verifica = ModificarJugador();
+					Verifica = MostrarDatos();
 					if(Verifica==false){
 						
 						printf("\nNo se encontraron nigun caso con ese alias gracias");
@@ -314,7 +441,12 @@ void Menu(){
 			
 			case 'e':
 			case 'E':
+					bool encontro ;
 					printf("Usted selec E ");
+					
+					encontro =	eliminarJugador();
+					
+				
 					
 					
 					Menu();
@@ -331,7 +463,7 @@ void Menu(){
 			case 's':
 			case 'S':
 				
-					printf("Usted quiso salir del programa gracias por eleginso jajaj  \n");
+					printf("Usted quiso salir del programa gracias  \n");
 					
 				
 				
